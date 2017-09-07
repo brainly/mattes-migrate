@@ -1,6 +1,6 @@
 # Mattes migrate
 
-Docerized mattes/migrate tool
+Dockerized mattes/migrate tool
 
 ## Usage
 
