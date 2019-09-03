@@ -9,6 +9,7 @@ Dockerized mattes/migrate tool
 ```
 docker run \
   -v {migration}:/migration \
+  -e "WAIT_FOR_PORTS=domain1:port1 domain2:port2" \
   brainly/mattes-migrate \
   {parameters}
 ```
@@ -23,6 +24,7 @@ Where:
 ```
 docker run \
   -v {migration}:/migration \
+  -e "WAIT_FOR_PORTS=hostname:5432" \
   brainly/mattes-migrate \
   -path=/migration \
   -database=postgres://user:password@hostname:5432/database \

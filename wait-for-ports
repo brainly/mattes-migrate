@@ -1,0 +1,20 @@
+#!/bin/sh
+
+maxtries=$WAIT_MAX_TRIES
+if [[ -z "${maxtries}" ]]; then
+  maxtries=5
+fi
+
+for addr in $WAIT_FOR_PORTS; do
+	host=$(echo $addr | sed 's/:.*//')
+	port=$(echo $addr | sed 's/.*://')
+
+	tries=0
+	while [ $tries -le $maxtries ] && ! nc -z -w 1 $host $port; do
+		echo "Waiting for $host:$port"
+		let 'tries += 1'
+		sleep $tries
+	done
+done
+
+exec $@
